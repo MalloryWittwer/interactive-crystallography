@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/interactive-crystallography/static/css/main.3ea81b21.css",
+    "main.js": "/interactive-crystallography/static/js/main.5585f419.js",
+    "index.html": "/interactive-crystallography/index.html",
+    "main.3ea81b21.css.map": "/interactive-crystallography/static/css/main.3ea81b21.css.map",
+    "main.5585f419.js.map": "/interactive-crystallography/static/js/main.5585f419.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3ea81b21.css",
+    "static/js/main.5585f419.js"
+  ]
+}
