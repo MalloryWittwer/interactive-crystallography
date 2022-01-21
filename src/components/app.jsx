@@ -178,7 +178,7 @@ class App extends Component {
             </div>
             <div className="copyrights">
               <p>&copy; Mallory Wittwer, 2022</p>
-              <a href="#">View code</a>
+              <a href="https://github.com/MalloryWittwer/interactive-crystallography">View code</a>
             </div>
           </div>
           <div className="display-container">

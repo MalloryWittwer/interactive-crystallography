@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
-import { max, maxTransformDependencies } from "mathjs";
 
 const margin = { top: 0, right: 0, bottom: 30, left: 35 },
   width = 460 - margin.left - margin.right,
