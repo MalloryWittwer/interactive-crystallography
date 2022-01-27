@@ -85,16 +85,16 @@ class App extends Component {
     let axisFile;
     switch (newDir) {
       case "z":
-        axisFile = "axisZ.svg";
+        axisFile = process.env.PUBLIC_URL + "/axisZ.svg";
         break;
       case "y":
-        axisFile = "axisY.svg";
+        axisFile = process.env.PUBLIC_URL + "/axisY.svg";
         break;
       case "x":
-        axisFile = "axisX.svg";
+        axisFile = process.env.PUBLIC_URL + "/axisX.svg";
         break;
       default:
-        axisFile = "axisZ.svg";
+        axisFile = process.env.PUBLIC_URL + "/axisZ.svg";
     }
     this.setState({
       direction: newDir,
