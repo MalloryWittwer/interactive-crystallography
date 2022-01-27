@@ -29,9 +29,9 @@ function processVector(vect) {
 }
 
 function computeVectors(eulers) {
-  const i1 = eulers[0];
-  const i2 = eulers[1];
-  const i3 = eulers[2];
+  const i1 = eulers[0] + 0.0001;
+  const i2 = eulers[1] + 0.0001;
+  const i3 = eulers[2] + 0.0001;
   const i1c = Math.cos(i1);
   const i1s = Math.sin(i1);
   const i2c = Math.cos(i2);

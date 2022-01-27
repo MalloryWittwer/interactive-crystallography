@@ -6,6 +6,8 @@ import Cube from "./cube3D";
 
 import { vectorProject, computeVectors, colorize } from "../helpers/utils";
 
+let pt, col, axisFile;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,36 +25,96 @@ class App extends Component {
   }
 
   updateE0 = (e0) => {
+    const newEulers = [
+      (e0 * Math.PI) / 180,
+      this.state.eulers[1],
+      this.state.eulers[2],
+    ];
+    const [xv, yv, zv] = computeVectors(newEulers);
+    switch (this.state.direction) {
+      case "z":
+        pt = vectorProject(zv);
+        col = colorize(zv);
+        break;
+      case "y":
+        pt = vectorProject(yv);
+        col = colorize(yv);
+        break;
+      case "x":
+        pt = vectorProject(xv);
+        col = colorize(xv);
+        break;
+      default:
+        pt = vectorProject(zv);
+        col = colorize(zv);
+    }
     this.setState({
-      eulers: [
-        (e0 * Math.PI) / 180,
-        this.state.eulers[1],
-        this.state.eulers[2],
-      ],
+      eulers: newEulers,
+      point: pt,
+      color: col,
     });
-    this.updatePoint();
   };
 
   updateE1 = (e1) => {
+    const newEulers = [
+      this.state.eulers[0],
+      (e1 * Math.PI) / 180,
+      this.state.eulers[2],
+    ];
+    const [xv, yv, zv] = computeVectors(newEulers);
+    switch (this.state.direction) {
+      case "z":
+        pt = vectorProject(zv);
+        col = colorize(zv);
+        break;
+      case "y":
+        pt = vectorProject(yv);
+        col = colorize(yv);
+        break;
+      case "x":
+        pt = vectorProject(xv);
+        col = colorize(xv);
+        break;
+      default:
+        pt = vectorProject(zv);
+        col = colorize(zv);
+    }
     this.setState({
-      eulers: [
-        this.state.eulers[0],
-        (e1 * Math.PI) / 180,
-        this.state.eulers[2],
-      ],
+      eulers: newEulers,
+      point: pt,
+      color: col,
     });
-    this.updatePoint();
   };
 
   updateE2 = (e2) => {
+    const newEulers = [
+      this.state.eulers[0],
+      this.state.eulers[1],
+      (e2 * Math.PI) / 180,
+    ];
+    const [xv, yv, zv] = computeVectors(newEulers);
+    switch (this.state.direction) {
+      case "z":
+        pt = vectorProject(zv);
+        col = colorize(zv);
+        break;
+      case "y":
+        pt = vectorProject(yv);
+        col = colorize(yv);
+        break;
+      case "x":
+        pt = vectorProject(xv);
+        col = colorize(xv);
+        break;
+      default:
+        pt = vectorProject(zv);
+        col = colorize(zv);
+    }
     this.setState({
-      eulers: [
-        this.state.eulers[0],
-        this.state.eulers[1],
-        (e2 * Math.PI) / 180,
-      ],
+      eulers: newEulers,
+      point: pt,
+      color: col,
     });
-    this.updatePoint();
   };
 
   getCameraPos(direction) {
@@ -82,58 +144,40 @@ class App extends Component {
   }
 
   updateDirection = (newDir) => {
-    let axisFile;
+    const [xv, yv, zv] = computeVectors(this.state.eulers);
     switch (newDir) {
       case "z":
         axisFile = process.env.PUBLIC_URL + "/axisZ.svg";
+        pt = vectorProject(zv);
+        col = colorize(zv);
         break;
       case "y":
         axisFile = process.env.PUBLIC_URL + "/axisY.svg";
+        pt = vectorProject(yv);
+        col = colorize(yv);
         break;
       case "x":
         axisFile = process.env.PUBLIC_URL + "/axisX.svg";
+        pt = vectorProject(xv);
+        col = colorize(xv);
         break;
       default:
         axisFile = process.env.PUBLIC_URL + "/axisZ.svg";
+        pt = vectorProject(zv);
+        col = colorize(zv);
     }
     this.setState({
       direction: newDir,
       axisFile: axisFile,
       cameraPos: this.getCameraPos(newDir),
       cameraRot: this.getCameraRot(newDir),
-    });
-    this.updatePoint();
-  };
-
-  updatePoint = () => {
-    const { eulers, direction } = this.state;
-    const [xv, yv, zv] = computeVectors(eulers);
-    let point, color;
-    switch (direction) {
-      case "z":
-        point = vectorProject(zv);
-        color = colorize(zv);
-        break;
-      case "y":
-        point = vectorProject(yv);
-        color = colorize(yv);
-        break;
-      case "x":
-        point = vectorProject(xv);
-        color = colorize(xv);
-        break;
-      default:
-        point = vectorProject(zv);
-        color = colorize(zv);
-    }
-    this.setState({
-      point: point,
-      color: color,
+      point: pt,
+      color: col,
     });
   };
 
   componentDidMount = () => {
-    this.updatePoint();
+    this.updateDirection("z");
   };
 
   render() {
@@ -145,10 +189,10 @@ class App extends Component {
               <div className="intro">
                 <h3>Crystal orientation visualizer</h3>
                 <p>
-                  Use the controls below to rotate the cubic unit cell and select a
-                  projection axis. The crystal's orientation, displayed in the
-                  Inverse Pole Figure (IPF), is color-coded according to the
-                  Miller indices of the plane facing the selected axis.{" "}
+                  Use the controls below to rotate the cubic unit cell and
+                  select a projection axis. The crystal's orientation, displayed
+                  in the Inverse Pole Figure (IPF), is color-coded according to
+                  the Miller indices of the plane facing the selected axis.{" "}
                 </p>
               </div>
               <div className="controls-wrapper">
@@ -177,8 +221,10 @@ class App extends Component {
               </div>
             </div>
             <div className="copyrights">
-              <p>&copy; Mallory Wittwer, 2022</p>
-              <a href="https://github.com/MalloryWittwer/interactive-crystallography">View code</a>
+              <p>By Mallory Wittwer, 2022</p>
+              <a href="https://github.com/MalloryWittwer/interactive-crystallography">
+                View code
+              </a>
             </div>
           </div>
           <div className="display-container">

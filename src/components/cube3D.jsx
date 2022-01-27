@@ -6,13 +6,7 @@ function CubeBody(props) {
   return (
     <mesh position={[0, 0, 0]} scale={[1, 1, 1]} rotation={props.rotation}>
       <boxBufferGeometry args={[3, 3, 3]} widthSegments={3} />
-      <meshStandardMaterial 
-        // wireframe
-        // transparent
-        // color={"#000000"}
-        color={props.color}
-        // opacity={0.5}
-      />
+      <meshStandardMaterial color={props.color} />
     </mesh>
   );
 }
