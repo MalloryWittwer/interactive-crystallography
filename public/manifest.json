@@ -14,7 +14,7 @@
   "theme_color": "#000000",
   "screenshots": [
     {
-      "src": "/public/screenshot-og.png",
+      "src": "./screenshot-og.png",
       "type": "image/png",
       "sizes": "687x520"
     }
