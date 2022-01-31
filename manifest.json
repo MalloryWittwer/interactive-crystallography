@@ -3,9 +3,9 @@
   "name": "Interactive Crystallography App",
   "icons": [
     {
-      "src": "/public/favicon.ico",
+      "src": "/public/icon.png",
       "type": "image/png",
-      "sizes": "96x96"
+      "sizes": "32x32"
     }
   ],
   "start_url": ".",
