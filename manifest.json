@@ -18,5 +18,11 @@
       "type": "image/png",
       "sizes": "687x520"
     }
-  ]
+  ],
+  "og:image:url": "screenshot-og.png",
+  "mainEntity": {
+    "headline": "Crystallography App",
+    "description": "",
+    "image": "screenshot-og.png"
+  }
 }
