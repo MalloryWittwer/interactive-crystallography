@@ -1,15 +1,22 @@
 {
-  "short_name": "Crystal App",
-  "name": "Interactive crystallography",
+  "short_name": "Crystallography App",
+  "name": "Interactive Crystallography App",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "32x32"
     }
   ],
   "start_url": ".",
+  "background_color": "#ffffff",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "screenshots": [
+    {
+      "src": "/public/screenshot-og.png",
+      "type": "image/png",
+      "sizes": "687x520"
+    }
+  ]
 }
